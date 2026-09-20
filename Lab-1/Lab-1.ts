@@ -560,7 +560,7 @@ function realtorFees(listing: listing): number {
   const price = parseInt(listing.price);
 
   return price > 450000 ? price * 0.02 : price *0.025;
-}
+};
 
 /**
  * Task-5:
