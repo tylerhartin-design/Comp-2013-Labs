@@ -3,6 +3,42 @@
 //Create an interface Listing that will represent an object
 //from the listings array below to resolve the type error.
 
+interface PropertySummary{
+  propertyType: string;
+  buildingType: string;
+  storeys: string;
+  title: string;
+  builtIn: string;
+  taxes: string;
+  parking: string;
+};
+
+interface BuildingSummary{
+  bedrooms: string;
+  bathrooms: string;
+  buildingFeatures: string;
+  cooling: string;
+  heating: string;
+  sewer: string;
+  water: string;
+  size: string;
+};
+
+interface Listing{
+  id: string;
+  price: string;
+  address: string;
+  postalCode: string;
+  MLSnumber: string;
+  photo: string;
+  description: string;
+  propertySummary: PropertySummary;
+  buildingSummary: BuildingSummary;
+
+  isSold?: boolean;
+  currentOwner?: string;
+};
+
 const listings: Listing[] = [
   {
     id: "10100",
@@ -482,6 +518,8 @@ const listings: Listing[] = [
  */
 //WRITE YOUR CODE BELOW
 
+const listing0: Listing = listing[0];
+
 /**
  * Task-3:
  * Create an object named listing0Updated of type Listing
@@ -494,6 +532,12 @@ const listings: Listing[] = [
  * Make sure to add them as OPTIONAL properties
  */
 //WRITE YOUR CODE BELOW
+
+const listing0Updated: Listing = {
+  ...listing0,
+  isSold: false,
+  currentOwner: "Jane Doe",
+};
 
 /**
  * NOTE: THIS TASK IS TRICKY!
@@ -512,12 +556,24 @@ const listings: Listing[] = [
  */
 //WRITE YOUR CODE BELOW
 
+function realtorFees(listing: listing): number {
+  const price = parseInt(listing.price);
+
+  return price > 450000 ? price * 0.02 : price *0.025;
+}
+
 /**
  * Task-5:
  * Sort the listing array ascendingly in a new variable called listingAscendingly
  * according to their built year
  */
 //WRITE YOUR CODE BELOW
+
+const listingAscendingly = [...listing];
+
+listingAscendingly.sort((listing1,listing2) => {
+ return listing1.builtYear - listing2.builtYear;
+});
 
 /**
  * Task-6:
@@ -527,3 +583,7 @@ const listings: Listing[] = [
  * This array should result in two listings only
  */
 //WRITE YOUR CODE BELOW
+
+const townhouseListing = listing.filter((listing) => {
+  return listing.houseType ==="Townhouse";
+});
